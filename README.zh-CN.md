@@ -32,7 +32,7 @@ Parallax 是编码智能体 Harness 之上的一层轻量增强。你负责目�
 > - **任务开始**：计划通过审查后，自动新会话执行。
 > - **长程任务**（team 档）：默认在上下文约 60% 时自动交接，保持 AI 头脑清醒，任务不中断。
 
-[▶ 观看 20 秒介绍视频](assets/parallax-intro.mp4)
+https://github.com/user-attachments/assets/6dd03b96-7a3a-44d4-85a4-78c70508a4c0
 
 ## 支持平台
 

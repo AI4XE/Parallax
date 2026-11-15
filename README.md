@@ -32,7 +32,7 @@ Parallax is a lightweight enhancement layer on top of your coding-agent harness.
 > - **At task start**: once the plan passes review, execution continues in a new session.
 > - **Long-running tasks** (team tier): context is handed off automatically at about 60%, keeping the AI clear-headed with no interruption to the task.
 
-[▶ Watch the 20-second intro](assets/parallax-intro.mp4)
+https://github.com/user-attachments/assets/6dd03b96-7a3a-44d4-85a4-78c70508a4c0
 
 ## Platform support
 
