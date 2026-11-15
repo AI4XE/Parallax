@@ -1,0 +1,24 @@
+{
+  "name": "parallax-dsh",
+  "description": "Wish it & Make it Real in 3 steps: wish, choose, hand off to an agent team. Works on Linux and Windows (macOS untested). Start with 「qstart」「Parallax」「wish」 or the Chinese trigger words 许愿创造 / 许愿编程.",
+  "version": "2.0.0",
+  "license": "MIT",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "skills"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml",
+      "listedByDefault": true
+    }
+  }
+}

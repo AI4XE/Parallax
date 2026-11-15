@@ -1,0 +1,15 @@
+{
+  "name": "parallax",
+  "owner": {
+    "name": "AI4XE"
+  },
+  "plugins": [
+    {
+      "name": "parallax",
+      "version": "2.0.0",
+      "description": "Wish-driven development loop for Claude Code (qstart / qgo / bcheck / gclear / rcheck / xwrap / wish).",
+      "source": "./",
+      "skills": "./platforms/claude-code/skills"
+    }
+  ]
+}

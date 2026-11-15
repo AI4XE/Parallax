@@ -1,0 +1,7 @@
+# gclear runtime products - never commit
+gclear_context.md
+gclear-last-*.jsonl
+gclear-last-*.log
+gclear.log
+.operations/
+tmp/

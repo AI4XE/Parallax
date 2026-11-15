@@ -1,0 +1,7 @@
+# runtime artifacts (not tracked, so the skill stays clean when copied into a new project)
+.tmp/
+.operations/
+__pycache__/
+gclear-core*.log
+gclear.log
+gclear_context*.md

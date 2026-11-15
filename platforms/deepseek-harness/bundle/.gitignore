@@ -1,0 +1,4 @@
+# Generated resources and retained build evidence are never release sources.
+skills/
+.parallax-skills-staging-*/
+.parallax-skills-backup-*/

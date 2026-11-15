@@ -1,0 +1,16 @@
+# Parallax DSH bundle patch.
+#
+# 1) Registers the bundled plugin that contributes the seven Parallax skills
+#    to the session skill registry and the same-session handoff tool/hook.
+#    The plugin's inject export declares its native service dependencies.
+# 2) Raises the host subagent service delegation depth (default 1 would make
+#    every delegated child a leaf: the Parallax executor must be able to
+#    summon its own independent review/work subagents, exactly like a solo
+#    session can). Declared here on purpose so the capability survives host
+#    default changes — do not remove without re-checking qgo-DSH.
+- insert:
+    - id: parallax-skills
+      name: parallax-dsh
+- id: subagent
+  config:
+    maxDepth: 3

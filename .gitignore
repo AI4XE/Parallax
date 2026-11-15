@@ -1,0 +1,27 @@
+# Runtime artifacts (never commit)
+__pycache__/
+*.pyc
+*.log
+.tmp/
+.operations/
+gclear_context*.md
+.claude/
+.pytest_cache/
+tmp/
+out/
+dist/
+node_modules/
+.venv/
+venv/
+
+# Local environment and editor state
+.env
+.env.*
+*.local
+.DS_Store
+Thumbs.db
+
+# Patch/backup leftovers
+*.bak
+*.orig
+*.rej

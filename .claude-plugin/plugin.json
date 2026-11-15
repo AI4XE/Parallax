@@ -1,0 +1,7 @@
+{
+  "name": "parallax",
+  "version": "2.0.0",
+  "description": "Wish-driven development loop on top of the Claude Code harness: qstart discussion -> qgo hand-off (independent review gate) -> autonomous execution -> rcheck audit -> xwrap wrap-up. Skills: qstart / qgo / bcheck / gclear / rcheck / xwrap / wish.",
+  "skills": "./platforms/claude-code/skills",
+  "license": "MIT"
+}
