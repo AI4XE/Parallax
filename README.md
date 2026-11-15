@@ -65,15 +65,20 @@ Then, inside that project in Claude Code, just say: `qstart` (or `wish` / `Paral
 
 Pick one of the following:
 
-- **Option 1: Plugin bundle** (preferred — one command, no copying, re-run to upgrade):
+- **Option 1: Plugin from npm** (preferred — no copying, re-run to upgrade):
+  In the DSH web UI: **Plugins → Add plugin → enter `parallax-dsh`** (the plugin list can take ~30 s to load; choose the npm registry), install it, toggle the plugin **on**, then restart the profile. Or from the CLI:
+  ```bash
+  dsh plugin --profile <profile> add parallax-dsh
+  ```
+  Requires the Node runtime supplied by dsh and pnpm visible on the `dsh` process PATH (e.g. via corepack); restart the profile after installing. Remove with `dsh plugin --profile <profile> remove parallax-dsh`. **Zero extra setup**: the bundle registers the skills and the native handoff hook and applies `subagent.maxDepth: 3`; do not edit rules, profiles, patches or permission settings for handoff.
+- **Option 2: Installer** (skills fallback): `bash install.sh --platform deepseek-harness <your-project-dir>` — copies the seven skills into `<project>/.agents/skills/` (atomic swap, preserves local `*.conf`). DSH discovers them by directory scan (hot reload, no restart). This is **skills-only**, not a full-bundle substitute: it has no native handoff hook or depth patch, and the complete `qgo` handoff chain is unsupported.
+- **Option 3: Build the bundle from this repository**:
   ```bash
   git clone https://github.com/AI4XE/Parallax.git
   node Parallax/platforms/deepseek-harness/bundle/build.mjs
   dsh plugin --profile <profile> add "file:<absolute path to Parallax>/platforms/deepseek-harness/bundle"
   ```
-  Requires the Node runtime supplied by dsh and pnpm visible on the `dsh` process PATH (e.g. via corepack). Windows can run both commands natively; quote paths containing spaces. Remove with `dsh plugin --profile <profile> remove parallax-dsh`. Restart the selected profile to load an installed update. **Zero extra setup**: the bundle registers the skills and the native handoff hook and applies `subagent.maxDepth: 3`; do not edit rules, profiles, patches or permission settings for handoff.
-- **Option 2: Installer** (skills fallback): `bash install.sh --platform deepseek-harness <your-project-dir>` — copies the seven skills into `<project>/.agents/skills/` (atomic swap, preserves local `*.conf`). DSH discovers them by directory scan (hot reload, no restart). This is **skills-only**, not a full-bundle substitute: it has no native handoff hook or depth patch, and the complete `qgo` handoff chain is unsupported.
-- **Option 3: Manual copy**: copy each folder from `platforms/deepseek-harness/skills/` into `<your-project>/.agents/skills/`.
+  Windows can run both commands natively; quote paths containing spaces. The installed bundle behaves exactly like the npm install (full native handoff, zero extra setup).
 
 Use normal `workspace-write` permissions, not bypass/full access. Keep ordinary shells: confined environments that block named-pipe capture cannot run some subprocess tools.
 

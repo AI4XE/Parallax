@@ -1,8 +1,28 @@
 {
   "name": "parallax-dsh",
   "description": "Wish it & Make it Real in 3 steps: wish, choose, hand off to an agent team. Works on Linux and Windows (macOS untested). Start with 「qstart」「Parallax」「wish」 or the Chinese trigger words 许愿创造 / 许愿编程.",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
+  "author": "AI4XE",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AI4XE/Parallax.git",
+    "directory": "platforms/deepseek-harness/bundle"
+  },
+  "homepage": "https://github.com/AI4XE/Parallax#readme",
+  "bugs": {
+    "url": "https://github.com/AI4XE/Parallax/issues"
+  },
+  "keywords": [
+    "parallax",
+    "deepseek-harness",
+    "ai-agents",
+    "agent-orchestration",
+    "claude-code",
+    "github-copilot",
+    "coding-agent",
+    "handoff"
+  ],
   "type": "module",
   "main": "lib/index.js",
   "exports": {
@@ -13,7 +33,8 @@
   "files": [
     "lib",
     "cordis.patch.yml",
-    "skills"
+    "skills",
+    "README.md"
   ],
   "dsh": {
     "bundle": {

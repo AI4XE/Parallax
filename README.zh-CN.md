@@ -65,15 +65,20 @@ https://github.com/user-attachments/assets/6dd03b96-7a3a-44d4-85a4-78c70508a4c0
 
 以下任选一种方式即可：
 
-- **方式一：插件 bundle**（首选——一条命令、零拷贝、升级重跑即可）：
+- **方式一：从 npm 安装插件**（首选——零拷贝，升级重跑即可）：
+  DSH 网页 →「添加插件」→ 输入 `parallax-dsh`（插件列表首次加载可能需要约 30 秒；选择 npm 源），安装后把插件开关**打开**，再重启 profile；或用 CLI：
+  ```bash
+  dsh plugin --profile <profile> add parallax-dsh
+  ```
+  要求 dsh 自带的 Node，且 `dsh` 进程 PATH 上能找到 pnpm（如经 corepack 提供）；安装后重启 profile。卸载：`dsh plugin --profile <profile> remove parallax-dsh`。**装完零额外设置**：bundle 注册技能与原生交接 hook，自带 `subagent.maxDepth: 3`；交接不要求编辑规则、profile、patch 或权限配置。
+- **方式二：安装脚本**（skills 兜底）：`bash install.sh --platform deepseek-harness <你的项目目录>` —— 把七个技能拷进 `<project>/.agents/skills/`（原子交换，保留本地 `*.conf`）。DSH 按目录扫描发现（热加载，无需重启）。此形态仅有技能文字，**不等价于完整 bundle**：没有原生交接 hook 或深度 patch，完整 `qgo` 交接链不支持。
+- **方式三：从本地仓库构建 bundle**：
   ```bash
   git clone https://github.com/AI4XE/Parallax.git
   node Parallax/platforms/deepseek-harness/bundle/build.mjs
   dsh plugin --profile <profile> add "file:<Parallax 绝对路径>/platforms/deepseek-harness/bundle"
   ```
-  要求 dsh 自带的 Node，且 `dsh` 进程 PATH 上能找到 pnpm（如经 corepack 提供）。Windows 可原生执行上述两条命令，含空格路径须加引号。卸载：`dsh plugin --profile <profile> remove parallax-dsh`；安装更新后重启所选 profile 加载新版。**装完零额外设置**：bundle 注册技能与原生交接 hook，自带 `subagent.maxDepth: 3`；交接不要求编辑规则、profile、patch 或权限配置。
-- **方式二：安装脚本**（skills 兜底）：`bash install.sh --platform deepseek-harness <你的项目目录>` —— 把七个技能拷进 `<project>/.agents/skills/`（原子交换，保留本地 `*.conf`）。DSH 按目录扫描发现（热加载，无需重启）。此形态仅有技能文字，**不等价于完整 bundle**：没有原生交接 hook 或深度 patch，完整 `qgo` 交接链不支持。
-- **方式三：手动拷贝**：把 `platforms/deepseek-harness/skills/` 下各文件夹拷入 `<your-project>/.agents/skills/`。
+  Windows 可原生执行上述两条命令，含空格路径须加引号。该方式与 npm 安装等价（完整原生交接、零额外设置）。
 
 使用普通 `workspace-write` 权限，不用 bypass/full access。使用普通 shell：会拦截 named-pipe 捕获的受限环境无法运行部分子进程工具。
 
