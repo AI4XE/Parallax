@@ -1,10 +1,8 @@
 ![Parallax](assets/banner.svg)
 
-# Parallax
+Parallax is a lightweight enhancement layer on top of your coding-agent harness. You own the goal; the agents own the work, context management, and independent acceptance.
 
-**Wish it. Make it real.** Say what you want, make a few choices, hand it off — an agent team does the work under independent review and in a clean session, audits the result, and commits it clean.
-
-Parallax is a lightweight enhancement layer on top of your coding-agent harness. You own the goal and the acceptance; the agents own the work.
+Install Parallax, then just wish it. **Make it real.** Say what you want, make a few choices, hand it off — an agent team does the work under independent review and in a clean session, audits the result, and commits it clean.
 
 [中文文档](README.zh-CN.md)
 
@@ -32,7 +30,7 @@ Parallax is a lightweight enhancement layer on top of your coding-agent harness.
 > - **At task start**: once the plan passes review, execution continues in a new session.
 > - **Long-running tasks** (team tier): context is handed off automatically at about 60%, keeping the AI clear-headed with no interruption to the task.
 
-https://github.com/user-attachments/assets/6dd03b96-7a3a-44d4-85a4-78c70508a4c0
+https://github.com/user-attachments/assets/c85a9a89-2afa-44b0-a4f5-bf6db1db3001
 
 ## Platform support
 
@@ -134,7 +132,7 @@ How the hand-off works on each harness:
 ## Philosophy
 
 - **The harness is the key.** Real quality comes from agent collaboration under harness constraints — not from a magic prompt or a bigger model.
-- **Three steps, one hand-off.** Wish → choose → hand off. You own the goal, the boundaries, and the acceptance; AI executes and cross-reviews, so you steer instead of supervising every step.
+- **Three steps, one hand-off.** Wish → choose → hand off. You own the goal and the boundaries; the agents execute, manage context, and independently verify and cross-review, so you steer instead of supervising every step.
 - **The loop.** Input → analysis → plan → execution → acceptance → delivery. Every step gets independent review, scoring, and iteration — the one doing the work and the one checking are different entities with isolated contexts.
 - **Three pillars**: phase isolation (strategy vs tactics) · adversarial acceptance (anti-sycophancy: the reviewer's job is to break it) · TDD (see it fail before you see it pass).
 
