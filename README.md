@@ -53,7 +53,7 @@ Pick one of the following — the skills are plain folders under `platforms/clau
   ```
   Installs all seven skills into `<project>/.claude/skills/`, atomically, and **preserves your local `*.conf` edits on re-install/upgrade**.
 - **Option 2: Manual copy**: copy each folder from `platforms/claude-code/skills/` into `<your-project>/.claude/skills/`. Fully functional without the installer; re-copying later overwrites local `*.conf` edits.
-- **Option 3: Claude Code plugin marketplace**: `/plugin marketplace add AI4XE/Parallax`, then `/plugin install parallax`. Slash commands get namespaced (`/parallax:qstart`); natural-language triggering ("qstart") still finds them. This path is structurally validated in the repository (plugin manifest, skill paths, marketplace list) but has not been exercised end-to-end against a remote marketplace.
+- **Option 3: Claude Code plugin marketplace**: `/plugin marketplace add AI4XE/Parallax`, then `/plugin install parallax`. Slash commands get namespaced (`/parallax:qstart`); natural-language triggering ("qstart") still finds them.
 
 Then, inside that project in Claude Code, just say: `qstart` (or `wish` / `Parallax`).
 
@@ -71,14 +71,15 @@ Pick one of the following:
   dsh plugin --profile <profile> add parallax-dsh
   ```
   Requires the Node runtime supplied by dsh and pnpm visible on the `dsh` process PATH (e.g. via corepack); restart the profile after installing. Remove with `dsh plugin --profile <profile> remove parallax-dsh`. **Zero extra setup**: the bundle registers the skills and the native handoff hook and applies `subagent.maxDepth: 3`; do not edit rules, profiles, patches or permission settings for handoff.
-- **Option 2: Installer** (skills fallback): `bash install.sh --platform deepseek-harness <your-project-dir>` — copies the seven skills into `<project>/.agents/skills/` (atomic swap, preserves local `*.conf`). DSH discovers them by directory scan (hot reload, no restart). This is **skills-only**, not a full-bundle substitute: it has no native handoff hook or depth patch, and the complete `qgo` handoff chain is unsupported.
-- **Option 3: Build the bundle from this repository**:
+- **Option 2: Build the bundle from this repository**:
   ```bash
   git clone https://github.com/AI4XE/Parallax.git
   node Parallax/platforms/deepseek-harness/bundle/build.mjs
   dsh plugin --profile <profile> add "file:<absolute path to Parallax>/platforms/deepseek-harness/bundle"
   ```
   Windows can run both commands natively; quote paths containing spaces. The installed bundle behaves exactly like the npm install (full native handoff, zero extra setup).
+
+Skills-only copying (`install.sh --platform deepseek-harness`) is **not a supported install**: it provides the skill text only, with no native handoff or team support.
 
 Use normal `workspace-write` permissions, not bypass/full access. Keep ordinary shells: confined environments that block named-pipe capture cannot run some subprocess tools.
 

@@ -53,7 +53,7 @@ https://github.com/user-attachments/assets/6dd03b96-7a3a-44d4-85a4-78c70508a4c0
   ```
   把七个技能装进 `<project>/.claude/skills/`，原子交换，**升级/重装时保留本地 `*.conf` 修改**。
 - **方式二：手动拷贝**：把 `platforms/claude-code/skills/` 下各文件夹拷入 `<your-project>/.claude/skills/`。无需安装脚本即可工作；以后再手动拷贝会覆盖本地 `*.conf` 修改。
-- **方式三：Claude Code 插件市场**：`/plugin marketplace add AI4XE/Parallax`，然后 `/plugin install parallax`。斜杠命令带命名空间（`/parallax:qstart`）；自然语言触发（说「qstart」）照样可用。该路径已在仓库内做结构校验（插件清单、技能路径、市场技能列表），但未对远端市场做端到端实测。
+- **方式三：Claude Code 插件市场**：`/plugin marketplace add AI4XE/Parallax`，然后 `/plugin install parallax`。斜杠命令带命名空间（`/parallax:qstart`）；自然语言触发（说「qstart」）照样可用。
 
 然后在那个项目里打开 Claude Code，只需说：`qstart`（或 `wish` / `Parallax`）。
 
@@ -71,14 +71,15 @@ https://github.com/user-attachments/assets/6dd03b96-7a3a-44d4-85a4-78c70508a4c0
   dsh plugin --profile <profile> add parallax-dsh
   ```
   要求 dsh 自带的 Node，且 `dsh` 进程 PATH 上能找到 pnpm（如经 corepack 提供）；安装后重启 profile。卸载：`dsh plugin --profile <profile> remove parallax-dsh`。**装完零额外设置**：bundle 注册技能与原生交接 hook，自带 `subagent.maxDepth: 3`；交接不要求编辑规则、profile、patch 或权限配置。
-- **方式二：安装脚本**（skills 兜底）：`bash install.sh --platform deepseek-harness <你的项目目录>` —— 把七个技能拷进 `<project>/.agents/skills/`（原子交换，保留本地 `*.conf`）。DSH 按目录扫描发现（热加载，无需重启）。此形态仅有技能文字，**不等价于完整 bundle**：没有原生交接 hook 或深度 patch，完整 `qgo` 交接链不支持。
-- **方式三：从本地仓库构建 bundle**：
+- **方式二：从本地仓库构建 bundle**：
   ```bash
   git clone https://github.com/AI4XE/Parallax.git
   node Parallax/platforms/deepseek-harness/bundle/build.mjs
   dsh plugin --profile <profile> add "file:<Parallax 绝对路径>/platforms/deepseek-harness/bundle"
   ```
   Windows 可原生执行上述两条命令，含空格路径须加引号。该方式与 npm 安装等价（完整原生交接、零额外设置）。
+
+纯技能拷贝（`install.sh --platform deepseek-harness`）**不是受支持的安装方式**：它只提供技能文本，没有原生交接与 team 支持。
 
 使用普通 `workspace-write` 权限，不用 bypass/full access。使用普通 shell：会拦截 named-pipe 捕获的受限环境无法运行部分子进程工具。
 
