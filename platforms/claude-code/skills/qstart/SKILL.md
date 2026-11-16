@@ -1,9 +1,9 @@
 ---
 name: qstart
-description: Wish / Parallax — development discussion entry: intake → focused research → round-by-round alignment → complete overview, then wait for explicit qgo once Q-Go Ready. Chinese triggers: 许愿创造, 许愿编程. Supports infra (non-version) and hotfix (version) tasks; bare qstart infers from the full requirement, not infra by default. Default tier: solo direct execution; team enables orchestrator + executor; aliases ver/version/nover. Trigger words: qstart, Q development discussion.
+description: "Wish / Parallax — development discussion entry: intake → focused research → round-by-round alignment → complete overview, then wait for explicit qgo once Q-Go Ready. Chinese triggers: 许愿创造, 许愿编程. Supports infra (non-version) and hotfix (version) tasks; bare qstart infers from the full requirement, not infra by default. Default tier: solo direct execution; team enables orchestrator + executor; aliases ver/version/nover. Trigger words: qstart, Q development discussion."
 user_invocable: true
 portable: true
-version: 2.0.0
+version: 2.0.1
 display_lang: en
 ---
 

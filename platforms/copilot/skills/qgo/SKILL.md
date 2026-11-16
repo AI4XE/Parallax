@@ -1,7 +1,7 @@
 ---
 name: qgo
-description: Q workflow hand-off execution: re-check the discussion → plan → independent review (bcheck, PASS≥4) → gclear automatic hand-off to a clean session → the hand-off session executes autonomously → rcheck reconciliation → scoped commit → final receipt (solo direct-execution tier). Trigger words: qgo, Q hand-off development.
-version: 2.0.0
+description: "Q workflow hand-off execution: re-check the discussion → plan → independent review (bcheck, PASS≥4) → gclear automatic hand-off to a clean session → the hand-off session executes autonomously → rcheck reconciliation → scoped commit → final receipt (solo direct-execution tier). Trigger words: qgo, Q hand-off development."
+version: 2.0.1
 ---
 
 # qgo — Hand-off execution

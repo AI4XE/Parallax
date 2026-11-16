@@ -1,7 +1,7 @@
 ---
 name: bcheck
-description: Independent review of the main developer's analysis/plan documents (bug fixes, new features, plans, mixed), verifying that the analysis is correct, the evidence sufficient and the plan sound; for implementation-summary commits, check completion item by item. The review is delegated to a freshly spawned subagent with a new context via the task tool. Trigger words: bcheck, plan review, analysis review.
-version: 2.0.0
+description: "Independent review of the main developer's analysis/plan documents (bug fixes, new features, plans, mixed), verifying that the analysis is correct, the evidence sufficient and the plan sound; for implementation-summary commits, check completion item by item. The review is delegated to a freshly spawned subagent with a new context via the task tool. Trigger words: bcheck, plan review, analysis review."
+version: 2.0.1
 ---
 
 # bcheck

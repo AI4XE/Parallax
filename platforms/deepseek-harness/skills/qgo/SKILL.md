@@ -1,11 +1,11 @@
 ---
 name: qgo
-description: Q workflow hand-off execution: re-check the discussion → plan → independent bcheck → same-window gclear → same-window autonomous execution (solo by default), or an orchestrator supervising an independent native executor subagent (explicit team). infra/hotfix share rcheck; the executor owns verification, commits, xwrap and the final receipt. Trigger words: qgo, Q hand-off development.
+description: "Q workflow hand-off execution: re-check the discussion → plan → independent bcheck → same-window gclear → same-window autonomous execution (solo by default), or an orchestrator supervising an independent native executor subagent (explicit team). infra/hotfix share rcheck; the executor owns verification, commits, xwrap and the final receipt. Trigger words: qgo, Q hand-off development."
 whenToUse: After a Q discussion the user explicitly says qgo / hand off development / the direction is fine, authorizing the discussion to be turned into a reviewed plan and executed autonomously.
 user-invocable: true
 metadata:
   portable: true
-  version: 2.0.0
+  version: 2.0.1
   display_lang: en
 ---
 

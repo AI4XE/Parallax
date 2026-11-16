@@ -8,11 +8,9 @@ Install Parallax, then just wish it. **Make it real.** Say what you want, make a
 
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Install-6B4FBB?logo=anthropic&logoColor=white)](#claude-code)
 [![DeepSeek Harness](https://img.shields.io/badge/DeepSeek_Harness-Install-4D6BFE?logo=deepseek&logoColor=white)](#deepseek-harness)
-[![VS Code Copilot](https://img.shields.io/badge/VS_Code_Copilot-Install-0098FF?logo=githubcopilot&logoColor=white)](#copilot)
+[![VS Code Copilot](https://img.shields.io/badge/VS_Code_Copilot-Install-0098FF?logo=githubcopilot&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=ai4e.parallax-github-copilot)
 [![License](https://img.shields.io/github/license/AI4XE/Parallax)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/AI4XE/Parallax)](https://github.com/AI4XE/Parallax)
-
-> The three install badges jump to the install section of this README — they are not one-click marketplace installs.
 
 ## Three steps
 
@@ -44,26 +42,19 @@ https://github.com/user-attachments/assets/c85a9a89-2afa-44b0-a4f5-bf6db1db3001
 
 ### Claude Code
 
-Pick one of the following — the skills are plain folders under `platforms/claude-code/skills/`:
-
 - **Option 1: Installer** (recommended):
   ```bash
   git clone https://github.com/AI4XE/Parallax.git
   bash Parallax/install.sh /path/to/your-project
   ```
-  Installs the Parallax skills into `<project>/.claude/skills/`, atomically, and **preserves your local `*.conf` edits on re-install/upgrade**.
-- **Option 2: Manual copy**: copy each folder from `platforms/claude-code/skills/` into `<your-project>/.claude/skills/`. Fully functional without the installer; re-copying later overwrites local `*.conf` edits.
-- **Option 3: Claude Code plugin marketplace**: `/plugin marketplace add AI4XE/Parallax`, then `/plugin install parallax`. Slash commands get namespaced (`/parallax:qstart`); natural-language triggering ("qstart") still finds them.
+- **Option 2: Manual copy**: copy each folder from `platforms/claude-code/skills/` into `<your-project>/.claude/skills/`.
+- **Option 3: Claude Code plugin marketplace**: `/plugin marketplace add AI4XE/Parallax`, then `/plugin install parallax`. Slash commands get namespaced (`/parallax:qstart`); natural-language triggering (e.g. "qstart") still finds them.
 
-Then, inside that project in Claude Code, just say: `qstart` (or `wish` / `Parallax`).
-
-**Permissions**: the team track starts a separate headless executor process. Use the permission mode you already trust for autonomous work; Parallax does not raise permissions on its own and never treats "hand-off" as approval.
+**Note**: the team track starts an additional, separate headless executor process; the orchestrator manages and reclaims it.
 
 > **Tip**: running Claude Code inside `tmux` together with a plugin is the most compatible setup; you can also use tools such as [cc-connect](https://github.com/chenhg5/cc-connect) to connect the session to a chat app for remote follow-up.
 
 ### DeepSeek Harness
-
-Pick one of the following:
 
 - **Option 1: Plugin from npm** (preferred — no copying, re-run to upgrade):
   In the DSH web UI: **Plugins → Add plugin → enter `parallax-dsh`** (the plugin list can take ~30 s to load; choose the npm registry), install it, toggle the plugin **on**, then restart the profile. Or from the CLI:
@@ -81,34 +72,28 @@ Pick one of the following:
 
 Skills-only copying (`install.sh --platform deepseek-harness`) is **not a supported install**: it provides the skill text only, with no native handoff or team support.
 
-**Permissions**: Parallax runs fully with normal `workspace-write` permissions.
+**Note**: Parallax also runs under DeepSeek Harness's `workspace-write` permissions.
 
 Then, in a DSH session with your project as the working directory, just say: `qstart` (or `wish` / `Parallax`).
 
-> **Build safety**: `build.mjs` is the cross-platform source of truth; `build.sh` is only a convenience wrapper. Only explicit skill resources are copied, a verified manifest protects generated files, and unknown files, links or changed managed output stop the build without deleting them.
-
 ### Copilot
 
-Pick one of the following:
-
-- **Option 1: Installer** (recommended):
+- **Option 1: Marketplace** (recommended): search **Parallax for Copilot** in the VS Code Marketplace (publisher `ai4e`) and install it.
+- **Option 2: Project install** via installer:
   ```bash
   git clone https://github.com/AI4XE/Parallax.git
   bash Parallax/install.sh --platform copilot /path/to/your-project
   ```
-- **Option 2: Manual copy**: copy `platforms/copilot/skills/*` into `<your-project>/.github/skills/`, plus `platforms/copilot/agents/*` and `platforms/copilot/instructions/copilot-instructions.md` into the matching `.github/` folders. Do not overwrite an existing `copilot-instructions.md` — merge it.
+- **Option 3: Manual copy**: copy `platforms/copilot/{skills,agents,instructions}` into `.github/`. Do not overwrite an existing `copilot-instructions.md` — merge it.
 
-Then in VS Code, with that folder open:
+**Note**:
 
-1. Run **Developer: Reload Window** once (skills and agents are discovered on reload).
-2. Trust the workspace once when prompted (remembered per folder).
-3. Recommended: set the chat permission mode to **Allow all** (or Autopilot) — setting key `chat.defaultConfiguration` — so cross-session hand-off and subagent reviews run without approval prompts. The default Manual mode also works; you approve each tool type once per session.
-
-Then just say: `qstart` (or `wish` / `Parallax`).
+1. On first run, run **Developer: Reload Window** once (skills and agents are discovered on reload).
+2. Recommended: set the chat permission mode to **Allow all** (or Autopilot) — setting key `chat.defaultConfiguration` — so cross-session hand-off and subagent reviews run without approval prompts. The default Manual mode also works; you approve each tool type once per session.
 
 ## Skills
 
-The Parallax skills turn "please build this" into a supervised, self-reviewing loop:
+Parallax turns "please build this" into a self-advancing, self-reviewing loop:
 
 | Skill | Role |
 |---|---|
@@ -122,7 +107,7 @@ The Parallax skills turn "please build this" into a supervised, self-reviewing l
 
 One line: **qstart** (align the wish) → **qgo** (release; plan gated by bcheck → clean-context execution → rcheck audit → commit) → **xwrap** (wrap up).
 
-Two execution tracks: **solo** is the default (one agent does it all after the hand-off); say **team** to add an orchestrator watching a separate executor. `ver` / `nover` select versioned vs non-versioned tasks.
+Two collaboration modes: planning and execution live in different sessions and hand off automatically; **solo** has no orchestrator and the execution session carries the work to the end; in **team**, the execution stage is run jointly by the orchestrator and an independent executor. `ver` / `nover` select versioned vs non-versioned tasks.
 
 How the hand-off works on each harness:
 
@@ -137,7 +122,7 @@ How the hand-off works on each harness:
 
 ## Philosophy
 
-- **The harness is the key.** Real quality comes from agent collaboration under harness constraints — not from a magic prompt or a bigger model.
+- **The harness is a key part.** Real quality comes from agent collaboration under harness constraints — not from a magic prompt.
 - **Three steps, one hand-off.** Wish → choose → hand off. You own the goal and the boundaries; the agents execute, manage context, and independently verify and cross-review, so you steer instead of supervising every step.
 - **The loop.** Input → analysis → plan → execution → acceptance → delivery. Every step gets independent review, scoring, and iteration — the one doing the work and the one checking are different entities with isolated contexts.
 - **Three pillars**: phase isolation (strategy vs tactics) · adversarial acceptance (anti-sycophancy: the reviewer's job is to break it) · TDD (see it fail before you see it pass).

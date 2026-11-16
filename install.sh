@@ -122,6 +122,77 @@ copy_tree() { # <src> <dst> — portable across GNU/Linux and macOS
     (cd "$1" && tar cf - .) | (cd "$2" && tar xf -)
 }
 
+# check_frontmatter_safe <file> — reject skill/agent frontmatter that strict
+# YAML loaders (VS Code) would drop silently.
+#
+# Rules (frontmatter block only, first `description:` line):
+#   * a value starting with " must be closed by an unescaped " — the escaped
+#     form ("...\"") is not valid for our consumers either;
+#   * a value starting with ' must match ^'([^']|'')*'$;
+#   * an unquoted value may not contain ": " (space after the colon).
+# awk uses [[:space:]] instead of \s so it behaves the same under gawk and
+# BSD/macOS awk.
+check_frontmatter_safe() { # <file>
+    local file="$1"
+    [ -f "$file" ] || return 0
+    local desc
+    desc="$(awk '
+        NR == 1 { if ($0 == "---") in_fm = 1; next }
+        in_fm && $0 == "---" { exit }
+        in_fm && /^description:/ {
+            sub(/^description:/, "")
+            sub(/^[[:space:]]+/, "")
+            print
+            exit
+        }
+    ' "$file")"
+    [ -n "$desc" ] || return 0
+
+    local len first last
+    len=${#desc}
+    first="${desc:0:1}"
+    last="${desc:$((len - 1)):1}"
+    if [ "$first" = '"' ]; then
+        { [ "$len" -ge 2 ] && [ "$last" = '"' ]; } \
+            || die "unsafe frontmatter (unterminated double-quoted description): $file"
+        # The closing quote must not be escaped: count trailing backslashes.
+        local body="${desc%\"}" escapes=0
+        while [ -n "$body" ] && [ "${body:$(( ${#body} - 1 )):1}" = '\' ]; do
+            body="${body%?}"
+            escapes=$((escapes + 1))
+        done
+        [ $((escapes % 2)) -eq 0 ] \
+            || die "unsafe frontmatter (escaped closing quote): $file"
+        return 0
+    fi
+    if [ "$first" = "'" ]; then
+        { [ "$len" -ge 2 ] && [ "$last" = "'" ]; } \
+            || die "unsafe frontmatter (unterminated single-quoted description): $file"
+        local inner="${desc:1:$((len - 2))}"
+        inner="${inner//\'\'/}"
+        case "$inner" in
+            *"'"*) die "unsafe frontmatter (bare quote inside single-quoted description): $file" ;;
+        esac
+        return 0
+    fi
+    case "$desc" in
+        *": "*) die "unsafe frontmatter (unquoted description contains ': '): $file" ;;
+    esac
+    return 0
+}
+
+check_frontmatter_tree() { # <platform> <src-root>
+    local platform="$1" src="$2" name file
+    for name in $SKILL_NAMES; do
+        check_frontmatter_safe "$src/$name/SKILL.md"
+    done
+    if [ "$platform" = "copilot" ]; then
+        for file in "$SCRIPT_DIR/platforms/copilot/agents"/*.agent.md; do
+            [ -f "$file" ] && check_frontmatter_safe "$file"
+        done
+    fi
+}
+
 install_one() { # <skill-name> <target-skills-dir> <src-root>
     local name="$1" skills_dir="$2" src_root="$3"
     local src="$src_root/$name"
@@ -160,6 +231,47 @@ install_one() { # <skill-name> <target-skills-dir> <src-root>
     fi
 }
 
+# copy_tree_merge <src> <dst> — copy over the target, keeping files that exist
+# only in the target (local additions). Plain `cp -R` never tries to restore
+# directory ownership/mtime, so it also works when the target directory is owned
+# by another user (tar would fail with "Cannot utime/chmod: Operation not
+# permitted"). Local *.conf handling lives in merge_one so local edits survive.
+copy_tree_merge() { # <src> <dst>
+    cp -R "$1"/. "$2"/
+}
+
+# merge_one <skill-name> <target-skills-dir> <src-root> <backup-root>
+# Non-destructive upgrade used for deployments:
+#   * every source file overwrites its target counterpart;
+#   * target-only files (local scripts, gclear_context*, .operations/, tests,
+#     logs) are left untouched;
+#   * existing local *.conf is restored over the shipped default;
+#   * the existing skill directory is copied to <backup-root>/<skill>/ first.
+merge_one() { # <skill-name> <target-skills-dir> <src-root> <backup-root>
+    local name="$1" skills_dir="$2" src_root="$3" backup_root="$4"
+    local src="$src_root/$name"
+    [ -d "$src" ] || die "source skill missing: $src"
+    local dest="$skills_dir/$name"
+    local had_dir=0
+    if [ -d "$dest" ]; then
+        had_dir=1
+        mkdir -p "$backup_root" || die "cannot create backup dir: $backup_root"
+        cp -R "$dest" "$backup_root/$name" || die "backup failed for $name (nothing changed)"
+    fi
+    mkdir -p "$dest" || die "cannot create $dest"
+    copy_tree_merge "$src" "$dest" || die "merge copy failed for $name"
+    if [ "$had_dir" = 1 ]; then
+        local conf base
+        for conf in "$backup_root/$name"/*.conf; do
+            [ -f "$conf" ] || continue
+            base="$(basename "$conf")"
+            cp "$conf" "$dest/$base" || die "cannot restore local conf $name/$base"
+            say "  kept local conf: $name/$base"
+        done
+    fi
+    say "  merged: $name"
+}
+
 uninstall_one() { # <skill-name> <target-skills-dir> <conf-keep-dir>
     local name="$1" skills_dir="$2" keep="$3"
     local dir="$skills_dir/$name"
@@ -173,13 +285,15 @@ uninstall_one() { # <skill-name> <target-skills-dir> <conf-keep-dir>
 }
 
 usage() {
-    say "usage: install.sh [--platform claude-code|deepseek-harness|copilot] <target-project-dir>"
+    say "usage: install.sh [--platform claude-code|deepseek-harness|copilot] [--merge] <target-project-dir>"
     say "       install.sh [--platform <p>] --uninstall <target-project-dir>"
     say "platform defaults to claude-code when omitted."
+    say "--merge upgrades in place: overwrite shipped files, keep local extras and *.conf,"
+    say "        and back up the previous skill dirs under <skills_dir>/.parallax-skills-backup-<UTC>/."
 }
 
 main() {
-    local mode="install" target=""
+    local mode="install" target="" merge=0
     while [ $# -gt 0 ]; do
         case "$1" in
             --platform)
@@ -187,6 +301,8 @@ main() {
                 PLATFORM="$2"; shift 2 ;;
             --platform=*)
                 PLATFORM="${1#--platform=}"; shift ;;
+            --merge)
+                merge=1; shift ;;
             --uninstall)
                 mode="uninstall"; shift ;;
             -h|--help)
@@ -220,11 +336,21 @@ main() {
     fi
 
     say "Installing Parallax skills ($PLATFORM) into: $skills_dir"
+    check_frontmatter_tree "$PLATFORM" "$src"
     mkdir -p "$skills_dir" || die "cannot create $skills_dir"
-    for name in $SKILL_NAMES; do install_one "$name" "$skills_dir" "$src"; done
-    local count
+    local count backup_root=""
+    if [ "$merge" = 1 ]; then
+        backup_root="$skills_dir/.parallax-skills-backup-$(date -u +%Y%m%dT%H%M%SZ)"
+        for name in $SKILL_NAMES; do merge_one "$name" "$skills_dir" "$src" "$backup_root"; done
+    else
+        for name in $SKILL_NAMES; do install_one "$name" "$skills_dir" "$src"; done
+    fi
     count=$(printf '%s\n' $SKILL_NAMES | wc -l | tr -d ' ')
-    say "Done. $count skills installed ($PLATFORM). Local *.conf edits (if any) were preserved."
+    if [ "$merge" = 1 ]; then
+        say "Done. $count skills merged ($PLATFORM). Local extras kept; previous copies backed up under $backup_root/"
+    else
+        say "Done. $count skills installed ($PLATFORM). Local *.conf edits (if any) were preserved."
+    fi
     install_extras "$PLATFORM" "$target"
     platform_hint "$PLATFORM" "$target"
 }

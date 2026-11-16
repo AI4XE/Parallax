@@ -1,6 +1,6 @@
 ---
 name: parallax-reviewer
-description: Parallax independent reviewer (GATE protocol carrier). On receiving content to review, performs an independent review in either aggressive-reviewer or reconciler mode, and ends the report with a mandatory GATE marker: score ≥4 outputs GATE:PASS, otherwise GATE:FAIL:{score}. Suitable for pre-plan review and post-implementation reconciliation review.
+description: "Parallax independent reviewer (GATE protocol carrier). On receiving content to review, performs an independent review in either aggressive-reviewer or reconciler mode, and ends the report with a mandatory GATE marker: score ≥4 outputs GATE:PASS, otherwise GATE:FAIL:{score}. Suitable for pre-plan review and post-implementation reconciliation review."
 tools: view, grep, glob, create, runInTerminal, getTerminalOutput, usages, web_fetch
 ---
 

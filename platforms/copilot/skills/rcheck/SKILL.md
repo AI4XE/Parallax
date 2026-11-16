@@ -1,7 +1,7 @@
 ---
 name: rcheck
-description: Reconciliation review after a complex task. Against the original plan (if any) and the implementation summary, check completion, evidence authenticity, and whether claims match reality item by item. The review is delegated to a freshly spawned subagent with a new context via the task tool. Trigger words: rcheck, reconciliation review, wrap-up review.
-version: 2.0.0
+description: "Reconciliation review after a complex task. Against the original plan (if any) and the implementation summary, check completion, evidence authenticity, and whether claims match reality item by item. The review is delegated to a freshly spawned subagent with a new context via the task tool. Trigger words: rcheck, reconciliation review, wrap-up review."
+version: 2.0.1
 ---
 
 # rcheck

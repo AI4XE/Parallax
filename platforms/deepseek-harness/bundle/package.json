@@ -1,7 +1,7 @@
 {
   "name": "parallax-dsh",
   "description": "Wish it & Make it Real in 3 steps: wish, choose, hand off to an agent team. Works on Linux and Windows (macOS untested). Start with 「qstart」「Parallax」「wish」 or the Chinese trigger words 许愿创造 / 许愿编程. · GitHub: https://github.com/AI4XE/Parallax",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "license": "MIT",
   "author": "AI4XE",
   "repository": {

@@ -1,8 +1,8 @@
 ---
 name: rcheck
-description: Reconciliation review after a complex task. Against the original plan (if any) and the implementation summary, check completion, evidence authenticity, and whether claims match reality item by item. Trigger words: rcheck, reconciliation review, wrap-up review.
+description: "Reconciliation review after a complex task. Against the original plan (if any) and the implementation summary, check completion, evidence authenticity, and whether claims match reality item by item. Trigger words: rcheck, reconciliation review, wrap-up review."
 portable: true
-version: 2.0.0
+version: 2.0.1
 display_lang: en
 ---
 

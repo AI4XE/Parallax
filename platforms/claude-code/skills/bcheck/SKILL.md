@@ -1,8 +1,8 @@
 ---
 name: bcheck
-description: Independent review of the main developer's analysis/plan documents (bug fixes, new features, plans, mixed), verifying that the analysis is correct, the evidence sufficient and the plan sound; for implementation-summary commits, check completion item by item. Trigger words: bcheck, plan review, analysis review.
+description: "Independent review of the main developer's analysis/plan documents (bug fixes, new features, plans, mixed), verifying that the analysis is correct, the evidence sufficient and the plan sound; for implementation-summary commits, check completion item by item. Trigger words: bcheck, plan review, analysis review."
 portable: true
-version: 2.0.0
+version: 2.0.1
 display_lang: en
 ---
 

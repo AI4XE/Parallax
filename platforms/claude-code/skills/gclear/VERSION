@@ -1,2 +1,2 @@
-2.0.0 (2026-11-14)
+2.0.1 (2026-11-16)
 English internationalization: logs/help/errors and the default injection prompt are now English; behavior, flags and receipts unchanged; cross-platform (Linux/WSL/macOS): proc_compat (ps/lsof) replaces /proc; portable timeout/path via handoff.py; queue accounting is turn-window scoped (busy_inject residue no longer latches busy); legacy detection hardened

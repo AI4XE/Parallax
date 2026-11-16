@@ -1,9 +1,9 @@
 ---
 name: qgo
-description: Q workflow hand-off execution: re-check the discussion → plan → independent bcheck → gclear → hand-off session executes autonomously (solo by default), or a clean orchestrator supervises an independent stream-json executor (D backend, explicit team). infra/hotfix share rcheck; the executor owns verification, commits, xwrap and the final receipt; the orchestrator exclusively owns start, feed, stop and recovery. Trigger words: qgo, Q hand-off development.
+description: "Q workflow hand-off execution: re-check the discussion → plan → independent bcheck → gclear → hand-off session executes autonomously (solo by default), or a clean orchestrator supervises an independent stream-json executor (D backend, explicit team). infra/hotfix share rcheck; the executor owns verification, commits, xwrap and the final receipt; the orchestrator exclusively owns start, feed, stop and recovery. Trigger words: qgo, Q hand-off development."
 user_invocable: true
 portable: true
-version: 2.0.0
+version: 2.0.1
 display_lang: en
 ---
 

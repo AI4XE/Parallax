@@ -1,7 +1,7 @@
 ---
 name: xwrap
-description: Development flow wrap-up skill (optional): inspect the repository's current state → report obvious problems/unfinished parts → update todo (infra: itodo / hotfix: itodo+btodo; for heterogeneous projects detect their actual todo files, and use the built-in lightweight three-category template when the format is missing) → write wrapup → do not change code during wrap-up → intelligent autonomous git commit (auto-commit this run's artifacts scoped; for code/ambiguous cases ask the user). No state dependency; determines mode/version live at runtime. Trigger words: xwrap, wrap-up, wrap, wrap up.
-version: 2.0.0
+description: "Development flow wrap-up skill (optional): inspect the repository's current state → report obvious problems/unfinished parts → update todo (infra: itodo / hotfix: itodo+btodo; for heterogeneous projects detect their actual todo files, and use the built-in lightweight three-category template when the format is missing) → write wrapup → do not change code during wrap-up → intelligent autonomous git commit (auto-commit this run's artifacts scoped; for code/ambiguous cases ask the user). No state dependency; determines mode/version live at runtime. Trigger words: xwrap, wrap-up, wrap, wrap up."
+version: 2.0.1
 ---
 
 # xwrap — Wrap-up (optional)

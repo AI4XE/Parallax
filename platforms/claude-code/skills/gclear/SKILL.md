@@ -1,10 +1,10 @@
 ---
 name: gclear
-description: Generic cross-session context hand-off — persist the context to keep, clear the current session (/clear), and let a clean new session continue with a single prompt. Idle gate + phased idempotent retries + strict delivery receipt + failure fallback guidance; dual mode for CC and CLI. Trigger words: gclear, clear and hand off, cross-session context hand-off.
+description: "Generic cross-session context hand-off — persist the context to keep, clear the current session (/clear), and let a clean new session continue with a single prompt. Idle gate + phased idempotent retries + strict delivery receipt + failure fallback guidance; dual mode for CC and CLI. Trigger words: gclear, clear and hand off, cross-session context hand-off."
 user_invocable: true
 icon: 🧼
 portable: true
-version: 2.0.0
+version: 2.0.1
 display_lang: en
 ---
 

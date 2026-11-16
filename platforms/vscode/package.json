@@ -1,0 +1,103 @@
+{
+  "name": "parallax-github-copilot",
+  "displayName": "Parallax for Copilot",
+  "description": "Hands-off coding for GitHub Copilot. Reviewed plans, clean-context execution, independent audits.",
+  "version": "2.0.2",
+  "publisher": "ai4e",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.106.0"
+  },
+  "categories": [
+    "AI",
+    "Chat",
+    "Other"
+  ],
+  "keywords": [
+    "parallax",
+    "copilot",
+    "github copilot",
+    "copilot chat",
+    "ai agents",
+    "agent orchestration",
+    "planning",
+    "code review",
+    "handoff",
+    "context handoff",
+    "automation",
+    "skills"
+  ],
+  "icon": "media/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AI4XE/Parallax.git"
+  },
+  "homepage": "https://github.com/AI4XE/Parallax",
+  "bugs": {
+    "url": "https://github.com/AI4XE/Parallax/issues"
+  },
+  "main": "./src/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "parallax.install",
+        "title": "Parallax: Install / Update into Project"
+      },
+      {
+        "command": "parallax.check",
+        "title": "Parallax: Check Installation"
+      },
+      {
+        "command": "parallax.forceReinstall",
+        "title": "Parallax: Force Reinstall"
+      },
+      {
+        "command": "parallax.openDocs",
+        "title": "Parallax: Open Documentation"
+      }
+    ],
+    "chatSkills": [
+      {
+        "path": "./media/skills/bcheck/SKILL.md"
+      },
+      {
+        "path": "./media/skills/gclear/SKILL.md"
+      },
+      {
+        "path": "./media/skills/qgo/SKILL.md"
+      },
+      {
+        "path": "./media/skills/qstart/SKILL.md"
+      },
+      {
+        "path": "./media/skills/rcheck/SKILL.md"
+      },
+      {
+        "path": "./media/skills/wish/SKILL.md"
+      },
+      {
+        "path": "./media/skills/xwrap/SKILL.md"
+      }
+    ],
+    "chatAgents": [
+      {
+        "path": "./media/agents/parallax-reviewer.agent.md"
+      }
+    ],
+    "chatInstructions": [
+      {
+        "path": "./media/instructions/parallax.instructions.md"
+      }
+    ]
+  },
+  "scripts": {
+    "sync": "node scripts/sync-content.mjs",
+    "sync:check": "node scripts/sync-content.mjs --check",
+    "test": "node --test --test-concurrency=1 test/*.test.mjs",
+    "vscode:prepublish": "node scripts/sync-content.mjs --check"
+  },
+  "devDependencies": {}
+}

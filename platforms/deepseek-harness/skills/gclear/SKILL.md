@@ -1,11 +1,11 @@
 ---
 name: gclear
-description: Same-window context hand-off — after refining the necessary state, request a model-context replacement through the native parallax_handoff, preserving the same SID, agent, user conversation and subagents, and continuing automatically at a safe point; verify durability through the operation status and never clear twice. Trigger words: gclear, clear and hand off, cross-session context hand-off.
+description: "Same-window context hand-off — after refining the necessary state, request a model-context replacement through the native parallax_handoff, preserving the same SID, agent, user conversation and subagents, and continuing automatically at a safe point; verify durability through the operation status and never clear twice. Trigger words: gclear, clear and hand off, cross-session context hand-off."
 whenToUse: When a discussion has accumulated a lot of context and needs a same-window refined hand-off (solo direct execution, team orchestrator continuation), or the user explicitly mentions gclear / hand-off / cross-session transfer.
 user-invocable: true
 metadata:
   portable: true
-  version: 2.0.0
+  version: 2.0.1
   display_lang: en
 ---
 

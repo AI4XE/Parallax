@@ -1,11 +1,11 @@
 ---
 name: rcheck
-description: Reconciliation review after a complex task. Against the original plan (if any) and the implementation summary, check completion, evidence authenticity, and whether claims match reality item by item. The review runs in a freshly spawned subagent with zero inherited context. Trigger words: rcheck, reconciliation review, wrap-up review.
+description: "Reconciliation review after a complex task. Against the original plan (if any) and the implementation summary, check completion, evidence authenticity, and whether claims match reality item by item. The review runs in a freshly spawned subagent with zero inherited context. Trigger words: rcheck, reconciliation review, wrap-up review."
 whenToUse: After the main agent finishes a complex task (multi-step implementation, cross-file changes, or runtime >30 minutes) and before reporting to the user, a reconciliation review is needed, or the user explicitly mentions rcheck / reconciliation review / wrap-up review.
 user-invocable: true
 metadata:
   portable: true
-  version: 2.0.0
+  version: 2.0.1
   display_lang: en
 ---
 

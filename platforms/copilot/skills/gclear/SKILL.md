@@ -1,7 +1,7 @@
 ---
 name: gclear
-description: Generic cross-session context hand-off — persist the context to keep, automatically create a clean new session and inject the hand-off prompt to continue; verify by reading back after delivery + idempotent retries + failure escape hatch. Trigger words: gclear, clear and hand off, cross-session context hand-off, hand off to a new session.
-version: 2.0.0
+description: "Generic cross-session context hand-off — persist the context to keep, automatically create a clean new session and inject the hand-off prompt to continue; verify by reading back after delivery + idempotent retries + failure escape hatch. Trigger words: gclear, clear and hand off, cross-session context hand-off, hand off to a new session."
+version: 2.0.1
 ---
 
 # gclear — Generic cross-session context hand-off

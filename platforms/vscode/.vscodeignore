@@ -1,0 +1,11 @@
+.vscode/**
+.vscode-test/**
+scripts/**
+test/**
+assets/**
+**/.gitignore
+**/*.map
+**/.DS_Store
+**/Thumbs.db
+**/__pycache__/**
+**/*.pyc

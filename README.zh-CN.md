@@ -1,18 +1,16 @@
 ![Parallax](assets/banner.svg)
 
-Parallax 是编码智能体 Harness 之上的一层轻量增强。你负责目标，智能体负责干活、上下文管理和独立验收。
+Parallax 是编码智能体 Harness 之上的一层轻量增强，让你体验更省心的「许愿创造」模式。
 
-安装 Parallax 后，体验更省心的「许愿创造」模式。**说想做什么，做几个选择题，然后放手**——智能体团队在独立审查和干净会话下把活干完，独立对账，最后干净提交。
+随口说想做什么，做几个选择题，然后放手——你专注目标，智能体团队负责干活、上下文管理和独立验收。
 
 [English](README.md)
 
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Install-6B4FBB?logo=anthropic&logoColor=white)](#claude-code)
 [![DeepSeek Harness](https://img.shields.io/badge/DeepSeek_Harness-Install-4D6BFE?logo=deepseek&logoColor=white)](#deepseek-harness)
-[![VS Code Copilot](https://img.shields.io/badge/VS_Code_Copilot-Install-0098FF?logo=githubcopilot&logoColor=white)](#copilot)
+[![VS Code Copilot](https://img.shields.io/badge/VS_Code_Copilot-Install-0098FF?logo=githubcopilot&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=ai4e.parallax-github-copilot)
 [![License](https://img.shields.io/github/license/AI4XE/Parallax)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/AI4XE/Parallax)](https://github.com/AI4XE/Parallax)
-
-> 三个安装徽章都跳转到本 README 的安装章节，不是一键安装。
 
 ## 三步
 
@@ -44,26 +42,19 @@ https://github.com/user-attachments/assets/6dd03b96-7a3a-44d4-85a4-78c70508a4c0
 
 ### Claude Code
 
-以下任选一种方式即可——技能就是 `platforms/claude-code/skills/` 下的普通文件夹：
-
 - **方式一：安装脚本**（推荐）：
   ```bash
   git clone https://github.com/AI4XE/Parallax.git
   bash Parallax/install.sh /path/to/your-project
   ```
-  把 Parallax 技能装进 `<project>/.claude/skills/`，原子交换，**升级/重装时保留本地 `*.conf` 修改**。
-- **方式二：手动拷贝**：把 `platforms/claude-code/skills/` 下各文件夹拷入 `<your-project>/.claude/skills/`。无需安装脚本即可工作；以后再手动拷贝会覆盖本地 `*.conf` 修改。
-- **方式三：Claude Code 插件市场**：`/plugin marketplace add AI4XE/Parallax`，然后 `/plugin install parallax`。斜杠命令带命名空间（`/parallax:qstart`）；自然语言触发（说「qstart」）照样可用。
+- **方式二：手动拷贝**：把 `platforms/claude-code/skills/` 下各文件夹拷入 `<your-project>/.claude/skills/`。
+- **方式三：Claude Code 插件市场**：`/plugin marketplace add AI4XE/Parallax`，然后 `/plugin install parallax`。斜杠命令带命名空间（`/parallax:qstart`）；自然语言触发（如「qstart」）照样可用。
 
-然后在那个项目里打开 Claude Code，只需说：`qstart`（或 `wish` / `Parallax`）。
-
-**权限**：team 档会启动一个独立的 headless 执行者进程。请使用你原本就信任的自主执行权限档；Parallax 不会自行提升权限，也绝不把「放手」当成权限批准。
+**说明**：team 档会启动额外的独立的 headless 执行者进程，编排者负责管理和回收。
 
 **建议**：在 `tmux` 中运行 Claude Code 并配合插件使用最兼容；也可用 [cc-connect](https://github.com/chenhg5/cc-connect) 等工具把会话接入聊天软件，方便远程跟进。
 
 ### DeepSeek Harness
-
-以下任选一种方式即可：
 
 - **方式一：从 npm 安装插件**（首选——零拷贝，升级重跑即可）：
   DSH 网页 →「添加插件」→ 输入 `parallax-dsh`（插件列表首次加载可能需要约 30 秒；选择 npm 源），安装后把插件开关**打开**，再重启 profile；或用 CLI：
@@ -81,34 +72,28 @@ https://github.com/user-attachments/assets/6dd03b96-7a3a-44d4-85a4-78c70508a4c0
 
 纯技能拷贝（`install.sh --platform deepseek-harness`）**不是受支持的安装方式**：它只提供技能文本，没有原生交接与 team 支持。
 
-**权限**：Parallax 在普通 `workspace-write` 权限下即可完整运行。
+**说明**：Parallax 在 DeepSeek Harness 的 `workspace-write` 权限下也可运行。
 
 然后在以你的项目为工作目录的 DSH 会话里，只需说：`qstart`（或 `wish` / `Parallax`）。
 
-> **构建安全**：`build.mjs` 为跨平台单源，`build.sh` 仅为便捷包装。只复制显式技能资源，用经校验的 manifest 保护生成文件；未知文件、链接或被改动的受管输出会中止构建，不会被删除。
-
 ### Copilot
 
-以下任选一种方式即可：
-
-- **方式一：安装脚本**（推荐）：
+- **方式一：市场安装**（推荐）：在 VS Code 扩展市场搜索 **Parallax for Copilot**（发布者 `ai4e`）并安装。
+- **方式二：项目内安装**（安装脚本）：
   ```bash
   git clone https://github.com/AI4XE/Parallax.git
   bash Parallax/install.sh --platform copilot /path/to/your-project
   ```
-- **方式二：手动拷贝**：把 `platforms/copilot/skills/*` 拷入 `<your-project>/.github/skills/`，把 `platforms/copilot/agents/*` 与 `platforms/copilot/instructions/copilot-instructions.md` 拷入对应 `.github/` 目录。已有 `copilot-instructions.md` 时不要覆盖，请合并。
+- **方式三：手动拷贝**：把 `platforms/copilot/{skills,agents,instructions}` 拷入 `.github/`。已有 `copilot-instructions.md` 时不要覆盖，请合并。
 
-然后在 VS Code 里打开那个文件夹：
+**说明**：
 
-1. 执行一次 **Developer: Reload Window**（技能与 agent 在 reload 时被发现）。
-2. 首次提示时信任 workspace 一次（按文件夹记住）。
-3. 建议：把聊天权限档设为 **Allow all**（或 Autopilot）——设置键 `chat.defaultConfiguration`——跨会话交接与子代理审查即零确认全自动。默认 Manual 档也能用，只是每种工具每会话首次要批一次。
-
-之后只需说：`qstart`（或 `wish` / `Parallax`）。
+1. 第一次运行时建议执行一次 **Developer: Reload Window**（技能与 agent 在 reload 时被发现）。
+2. 建议：把聊天权限档设为 **Allow all**（或 Autopilot）——设置键 `chat.defaultConfiguration`——跨会话交接与子代理审查即零确认全自动。默认 Manual 档也能用，只是每种工具每会话首次要批一次。
 
 ## 技能
 
-Parallax 技能把「帮我做个东西」变成一条有人监督、自我审查的循环流水线：
+Parallax 把「帮我做个东西」变成一条自动推进和自我审查的循环流水线：
 
 | 技能 | 角色 |
 |---|---|
@@ -122,7 +107,7 @@ Parallax 技能把「帮我做个东西」变成一条有人监督、自我审�
 
 一行话：**qstart**（对齐愿望）→ **qgo**（放手；方案过 bcheck 门 → 干净上下文执行 → rcheck 对账 → 提交）→ **xwrap**（收尾）。
 
-两条执行档位：**solo** 为默认（交接后一个 agent 干到底）；说 **team** 加一个编排者照看独立执行者。`ver` / `nover` 选择版本任务与非版本任务。
+两种协作模式：规划与执行分属不同会话、自动衔接；**solo** 模式不设编排，执行会话一干到底；**team** 模式的执行阶段由编排者与独立执行者协作完成。`ver` / `nover` 选择版本任务与非版本任务。
 
 各 harness 上的交接方式：
 
@@ -137,7 +122,7 @@ Parallax 技能把「帮我做个东西」变成一条有人监督、自我审�
 
 ## 理念
 
-- **Harness 才是关键。** 真正的质量来自 harness 约束下的智能体协作——不靠魔法提示词，也不靠更大的模型。
+- **Harness 是关键的一环。** 真正的质量来自 harness 约束下的智能体协作——不靠魔法提示词。
 - **三步、一次放手。** 许愿 → 做选择题 → 放手。你负责目标与边界；智能体执行、管理上下文并独立验收、交叉审查，你掌舵，不必盯每一步。
 - **循环。** 输入 → 分析 → 方案 → 执行 → 验收 → 交付。每一步都有独立审查、评分与迭代——干活的和检查的永远不是同一个实体、上下文相互隔离。
 - **三大支柱**：阶段隔离（战略/战术分层）· 对抗式验收（反谄媚：审查员的职责就是拆台）· TDD（先看到红，再看到绿）。
