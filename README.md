@@ -51,7 +51,7 @@ Pick one of the following — the skills are plain folders under `platforms/clau
   git clone https://github.com/AI4XE/Parallax.git
   bash Parallax/install.sh /path/to/your-project
   ```
-  Installs all seven skills into `<project>/.claude/skills/`, atomically, and **preserves your local `*.conf` edits on re-install/upgrade**.
+  Installs the Parallax skills into `<project>/.claude/skills/`, atomically, and **preserves your local `*.conf` edits on re-install/upgrade**.
 - **Option 2: Manual copy**: copy each folder from `platforms/claude-code/skills/` into `<your-project>/.claude/skills/`. Fully functional without the installer; re-copying later overwrites local `*.conf` edits.
 - **Option 3: Claude Code plugin marketplace**: `/plugin marketplace add AI4XE/Parallax`, then `/plugin install parallax`. Slash commands get namespaced (`/parallax:qstart`); natural-language triggering ("qstart") still finds them.
 
@@ -81,7 +81,7 @@ Pick one of the following:
 
 Skills-only copying (`install.sh --platform deepseek-harness`) is **not a supported install**: it provides the skill text only, with no native handoff or team support.
 
-Use normal `workspace-write` permissions, not bypass/full access. Keep ordinary shells: confined environments that block named-pipe capture cannot run some subprocess tools.
+**Permissions**: Parallax runs fully with normal `workspace-write` permissions.
 
 Then, in a DSH session with your project as the working directory, just say: `qstart` (or `wish` / `Parallax`).
 
@@ -108,7 +108,7 @@ Then just say: `qstart` (or `wish` / `Parallax`).
 
 ## Skills
 
-Seven skills that turn "please build this" into a supervised, self-reviewing loop:
+The Parallax skills turn "please build this" into a supervised, self-reviewing loop:
 
 | Skill | Role |
 |---|---|

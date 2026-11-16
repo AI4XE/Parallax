@@ -1,0 +1,41 @@
+{
+  "name": "parallax-dsh",
+  "version": "2.0.2",
+  "description": "DeepSeek Harness entry package for Parallax — wish-driven development with automatic context management. Parallax is a lightweight enhancement layer on top of your coding-agent harness: you own the goal; the agents own the work, context management, and independent acceptance. Say what you want, and an agent team plans, reviews, and executes in a clean session, with context handed off automatically. The full Parallax suite lives in this repository — see README.",
+  "license": "MIT",
+  "author": "AI4XE",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AI4XE/Parallax.git"
+  },
+  "homepage": "https://github.com/AI4XE/Parallax#readme",
+  "bugs": {
+    "url": "https://github.com/AI4XE/Parallax/issues"
+  },
+  "keywords": [
+    "parallax",
+    "deepseek-harness",
+    "ai-agents",
+    "agent-orchestration",
+    "claude-code",
+    "github-copilot",
+    "coding-agent",
+    "handoff"
+  ],
+  "main": "platforms/deepseek-harness/bundle/lib/index.js",
+  "dsh": {
+    "bundle": {
+      "patch": "platforms/deepseek-harness/bundle/cordis.patch.yml",
+      "listedByDefault": true
+    }
+  },
+  "files": [
+    "platforms/deepseek-harness/bundle",
+    "platforms/deepseek-harness/skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "prepare": "node platforms/deepseek-harness/bundle/build.mjs"
+  }
+}

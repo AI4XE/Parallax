@@ -1,0 +1,3 @@
+# npm packing for this bundle is governed by the "files" whitelist in package.json.
+# This file exists so npm does not fall back to .gitignore (skills/ is generated
+# but must ship inside the package).

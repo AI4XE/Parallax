@@ -51,7 +51,7 @@ https://github.com/user-attachments/assets/6dd03b96-7a3a-44d4-85a4-78c70508a4c0
   git clone https://github.com/AI4XE/Parallax.git
   bash Parallax/install.sh /path/to/your-project
   ```
-  把七个技能装进 `<project>/.claude/skills/`，原子交换，**升级/重装时保留本地 `*.conf` 修改**。
+  把 Parallax 技能装进 `<project>/.claude/skills/`，原子交换，**升级/重装时保留本地 `*.conf` 修改**。
 - **方式二：手动拷贝**：把 `platforms/claude-code/skills/` 下各文件夹拷入 `<your-project>/.claude/skills/`。无需安装脚本即可工作；以后再手动拷贝会覆盖本地 `*.conf` 修改。
 - **方式三：Claude Code 插件市场**：`/plugin marketplace add AI4XE/Parallax`，然后 `/plugin install parallax`。斜杠命令带命名空间（`/parallax:qstart`）；自然语言触发（说「qstart」）照样可用。
 
@@ -81,7 +81,7 @@ https://github.com/user-attachments/assets/6dd03b96-7a3a-44d4-85a4-78c70508a4c0
 
 纯技能拷贝（`install.sh --platform deepseek-harness`）**不是受支持的安装方式**：它只提供技能文本，没有原生交接与 team 支持。
 
-使用普通 `workspace-write` 权限，不用 bypass/full access。使用普通 shell：会拦截 named-pipe 捕获的受限环境无法运行部分子进程工具。
+**权限**：Parallax 在普通 `workspace-write` 权限下即可完整运行。
 
 然后在以你的项目为工作目录的 DSH 会话里，只需说：`qstart`（或 `wish` / `Parallax`）。
 
@@ -108,7 +108,7 @@ https://github.com/user-attachments/assets/6dd03b96-7a3a-44d4-85a4-78c70508a4c0
 
 ## 技能
 
-七个技能，把「帮我做个东西」变成一条有人监督、自我审查的循环流水线：
+Parallax 技能把「帮我做个东西」变成一条有人监督、自我审查的循环流水线：
 
 | 技能 | 角色 |
 |---|---|
