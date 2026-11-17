@@ -18,7 +18,7 @@ Just say what you want, make a few choices, hand it off — an agent team takes 
 > **Plugin trigger words**: `wish` · `Parallax` · `qstart`
 
 1. **Wish** — say what you would like, as casually as you like. You do not need to have it figured out; add more in several messages and say "that's all" when you are done.
-2. **Choose** — the agent researches first, then aligns with you one question at a time; you just pick.
+2. **Choose** — the agent researches first, then aligns with you one question at a time; you just pick, or add requirements and keep discussing as you go.
 3. **Hand off** — the agent team takes it from there: plan → independent review → new-session execution → independent audit → scoped commit → wrap-up.
 
 > **Two modes**
