@@ -1,4 +1,4 @@
-![Parallax](assets/banner.svg)
+![Parallax](assets/banner.zh-CN.svg)
 
 Parallax 是编码智能体 Harness 之上的一层轻量增强，让你体验更省心的「许愿创造」模式。
 

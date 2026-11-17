@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="300" viewBox="0 0 1280 300" role="img" aria-labelledby="banner-title banner-description">
+  <title id="banner-title">Parallax</title>
+  <desc id="banner-description">许愿创造，轻装上阵</desc>
+  <defs>
+    <linearGradient id="wordmark" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#08B9EE"/>
+      <stop offset="1" stop-color="#008BD5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="300" fill="#0F172A"/>
+  <text x="640" y="177" text-anchor="middle" fill="url(#wordmark)" font-family="Arial, Helvetica, sans-serif" font-size="122" font-weight="700" letter-spacing="-4">Parallax</text>
+  <text x="640" y="237" text-anchor="middle" fill="#A5B2C5" font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, Source Han Sans SC, Arial, sans-serif" font-size="31" font-weight="400" letter-spacing="2">许愿创造，轻装上阵</text>
+</svg>
