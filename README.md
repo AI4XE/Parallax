@@ -1,6 +1,6 @@
 ![Parallax](assets/banner.svg)
 
-Parallax is a lightweight workflow plugin on top of your coding-agent harness.
+Parallax is a lightweight workflow plugin for hands-off AI coding, on top of your agent harness.
 
 Just say what you want, make a few choices, hand it off — an agent team takes it from there. You own the goal; the agents own the work, independent audits, and context management.
 
