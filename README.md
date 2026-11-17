@@ -9,6 +9,7 @@ Install Parallax, then just wish it. **Make it real.** Say what you want, make a
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Install-6B4FBB?logo=anthropic&logoColor=white)](#claude-code)
 [![DeepSeek Harness](https://img.shields.io/badge/DeepSeek_Harness-Install-4D6BFE?logo=deepseek&logoColor=white)](#deepseek-harness)
 [![VS Code Copilot](https://img.shields.io/badge/VS_Code_Copilot-Install-0098FF?logo=githubcopilot&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=ai4e.parallax-github-copilot)
+[![Listed on dsh-plugin.org](https://dsh-plugin.org/badges/listed.svg)](https://dsh-plugin.org/plugins/ai4xe/parallax)
 [![License](https://img.shields.io/github/license/AI4XE/Parallax)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/AI4XE/Parallax)](https://github.com/AI4XE/Parallax)
 
