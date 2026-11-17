@@ -1,8 +1,8 @@
 ![Parallax](assets/banner.svg)
 
-Parallax is a lightweight enhancement layer on top of your coding-agent harness. You own the goal; the agents own the work, context management, and independent acceptance.
+Parallax is a lightweight workflow plugin on top of your coding-agent harness. You own the goal; the agents own the work, context management, and independent audits.
 
-Install Parallax, then just wish it. **Make it real.** Say what you want, make a few choices, hand it off — an agent team does the work under independent review and in a clean session, audits the result, and commits it clean.
+Install Parallax, then just say what you want, make a few choices, hand it off — an agent team takes it from there, works in a clean session under independent review, audits the result, and commits it.
 
 [中文文档](README.zh-CN.md)
 
